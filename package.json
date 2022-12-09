@@ -1,0 +1,20 @@
+{
+  "name": "poachd",
+  "version": "1.0.0",
+  "description": "Find new recipes, modify them to your tastes and share your \"poachd\" version of the recipe with the world! Paid subscriptions to the website will earn you access to unlimited poaches every month.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitJanaeW/poachd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gitJanaeW/poachd/issues"
+  },
+  "homepage": "https://github.com/gitJanaeW/poachd#readme"
+}
