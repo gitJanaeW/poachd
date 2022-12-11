@@ -1,4 +1,3 @@
-import React from "react";
 import favicon from "../../public/favicon.png";
 import profileImg from "../../public/images/profile-photo.jpg";
 

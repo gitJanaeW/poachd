@@ -11,8 +11,6 @@ module.exports = {
   devServer: {
     static: path.resolve(__dirname, 'dist'),
     port: 3000,
-    open: true,
-    liveReload: true,
     hot: true
   },
   module: {
@@ -23,9 +21,6 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         use: {
           loader: "babel-loader",
-          // options: {
-          //   presets: ["@babel/preset-env", "@babel/preset-react"],
-          // },
         },
       },
       {
