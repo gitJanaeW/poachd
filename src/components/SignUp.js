@@ -3,7 +3,7 @@ export default function SignUp() {
         <section className="bg-amber-300">
             <div className="rounded-lg md:mt-0 sm:max-w-md xl:p-0">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <h1 className="text-xl font-bold md:text-2xl ">
+                    <h1 id="signup" className="text-xl font-bold md:text-2xl ">
                         Create an account
                     </h1>
                     <form className="space-y-4 md:space-y-6" action="#">

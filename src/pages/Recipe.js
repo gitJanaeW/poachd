@@ -3,6 +3,9 @@ import profileImg from "../../public/images/profile-photo.jpg";
 import pin from "../../public/images/pin.png";
 
 export default function Recipe() {
+    const changeLanding = () => {
+        console.log(window.path);
+    };
     return(
         <>
         {/* Dish details */}
@@ -10,7 +13,7 @@ export default function Recipe() {
             <div className="flex pt-5 md:pt-12 justify-center">
                 <div className="bg-white w-11/12 md:w-7/10 md:mx-8 md:flex md:max-w-5xl shadow-lg rounded-t-lg">
                     <div className="md:w-1/2 rounded-t-lg md:rounded-t-none md:rounded-tl-lg md:rounded-bl-lg">
-                        <img className="object-cover min-h-full max-md:rounded-lg max-sm:m-auto md:rounded-l-lg" alt="dish" src={recipeImg}/>
+                        <img onClick={changeLanding} className="object-cover min-h-full max-md:rounded-lg max-sm:m-auto md:rounded-l-lg" alt="dish" src={recipeImg}/>
                     </div>
                     <div className="mb-4 pt-5 px-6 max-w-xl md:max-w-5xl md:w-1/2">
                         <h2 className="text-3xl font-medium max-sm:text-center">Butter Chicken</h2>

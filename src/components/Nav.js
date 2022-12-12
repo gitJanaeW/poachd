@@ -3,16 +3,16 @@ import profileImg from "../../public/images/profile-photo.jpg";
 
 export default function Nav() {
     return (
-        <nav className="px-5 py-3 bg-white shadow flex justify-between items-center">
-            <div>
+        <nav className="px-5 py-3 bg-white shadow flex justify-between items-center sticky top-0" style={{maxHeight: "68px"}}>
+            <a href="/">
                 <div className="flex justify-between items-center w-10">
                     <img src={favicon} alt='Poachd logo, which is an anstract sunny side up egg'/>
                     <h1 className="text-xl mx-2 font-bold">Poachd</h1>
-                    <span className="text-3xl cursor-pointer mx-2 md:hidden block">
-                    <ion-icon name="menu" onclick="Menu(this)"></ion-icon>
-                    </span>
+                    {/* <span className="text-3xl cursor-pointer mx-2 md:hidden block"> */}
+                    {/* <ion-icon name="menu" onclick="Menu(this)"></ion-icon> */}
+                    {/* </span> */}
                 </div>
-            </div>
+            </a>
             <form className="my-6 md:my-0 w-2/5">
                 <input className='p-2 text-l w-full border-2 border-slate-300 rounded' type="text" id="search" placeholder='Search'></input>
             </form>

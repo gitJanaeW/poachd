@@ -1,8 +1,25 @@
-import LandingImg from "../components/LandingImg.js";
-import Login from "../components/Login.js";
-import SignUp from "../components/SignUp.js";
+import {useState, useEffect, lazy} from "react";
+const LandingImg = lazy(() => import("../components/LandingImg.js"));
+const Login = lazy(() => import("../components/Login.js"));
+const Signup = lazy(() => import("../components/Signup.js"));
 
 export default function Landing() {
+    const [component, setComp] = useState("landing");
+    const path = window.location.pathname;
+    const changeLanding = () => {
+        if (path === "/") {
+            setComp("landing");
+        }
+        else if (path === "/login") {
+            setComp("login");
+        }
+        else {
+            setComp("signup");
+        }
+    };
+    useEffect(() => {
+        changeLanding();
+    });
     return(
         <div className="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-4">
             <div className="flex items-center justify-center">
@@ -19,22 +36,24 @@ export default function Landing() {
                         </p>
                         <div className="mt-5 sm:mt-8 sm:flex justify-start">
                             <div className="rounded-md shadow">
-                            <p className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-amber-300 hover:bg-amber-400 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                            <a onClick={changeLanding} href="/signup" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-amber-300 hover:bg-amber-400 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                 Sign Up
-                            </p>
+                            </a>
                         </div>
                         <div className="mt-3 sm:mt-0 sm:ml-3">
-                            <p  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-black bg-amber-100 hover:text-black hover:bg-amber-200 focus:outline-none focus:shadow-outline-indigo focus:transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                            <a onClick={changeLanding} href="/login" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-black bg-amber-100 hover:text-black hover:bg-amber-200 focus:outline-none focus:shadow-outline-indigo focus:transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                 Login
-                            </p>
+                            </a>
                         </div>
                     </div>
                 </div>
             </main>
         </div>
-        <LandingImg/>
-        {/* <Login/> */}
-        {/* <SignUp/> */}
+        {
+            component === "signup" ? <Signup/>
+            : component === "login" ? <Login/>
+            : <LandingImg/>
+        }
     </div>
     );
 }

@@ -14,6 +14,8 @@ const App = () => {
                 <Suspense fallback={<div style={{minHeight:"10vh"}}></div>}>
                     <Routes>
                         <Route path="/" element={<Landing/>}/>
+                        <Route path="/login" element={<Landing/>}/>
+                        <Route path="/signup" element={<Landing/>}/>
                         <Route path="/profile" element={<Profile/>}/>
                         <Route path="/recipe" element={<Recipe/>}/>
                         <Route path="/explore" element={<Explore/>}/>
