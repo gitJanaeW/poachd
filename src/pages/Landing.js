@@ -21,7 +21,7 @@ export default function Landing() {
         changeLanding();
     });
     return(
-        <div className="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-4 min-h-screen">
             <div className="flex items-center justify-center">
                 <main className="max-w-screen-xl px-4 lg:px-16">
                     <div className="text-left">
