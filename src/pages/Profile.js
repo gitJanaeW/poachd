@@ -1,9 +1,12 @@
+import profileImg from "../../public/images/profile-photo.jpg";
+import recipeImg from "../../public/images/frontendtest/chili.jpg";
+
 export default function Profile() {
     return(
         <div>
             <div className="flex justify-around my-6 max-md:flex-col max-md:flex-wrap">
                 <div className="flex items-center max-md:flex-col">
-                    <img className="rounded-full w-40" src="../images/profile-photo.jpg" alt='Poachd logo, which is an anstract sunny side up egg'/>
+                    <img className="rounded-full w-40" src={profileImg} alt='Poachd logo, which is an anstract sunny side up egg'/>
                     <div className="px-6">
                         <h3 className="text-4xl font-semibold leading-normal mb-2 max-md:text-center">
                             JennaCooks
@@ -53,7 +56,7 @@ export default function Profile() {
                 <div className="m-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 <div className="flex flex-col space-y-4">
                     <div>
-                        <img className="object-cover rounded-xl h-80 lg:w-full w-screen" src="../images/frontendtest/chicken.jfif" alt="recipe"/>
+                        <img className="object-cover rounded-xl h-80 lg:w-full w-screen" src={recipeImg} alt="recipe"/>
                     </div>
                     <div>
                         <h2 className="text-lg">Favorites</h2>

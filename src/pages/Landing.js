@@ -32,8 +32,8 @@ export default function Landing() {
                 </div>
             </main>
         </div>
-        {/* <LandingImg/> */}
-        <Login/>
+        <LandingImg/>
+        {/* <Login/> */}
         {/* <SignUp/> */}
     </div>
     );
