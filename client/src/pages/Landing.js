@@ -1,7 +1,7 @@
 import {useState, useEffect, lazy} from "react";
-const LandingImg = lazy(() => import("../components/LandingImg.js"));
-const Login = lazy(() => import("../components/Login.js"));
-const Signup = lazy(() => import("../components/Signup.js"));
+const LandingImg = lazy(() => import("../../src/components/LandingImg.js"));
+const Login = lazy(() => import("../../src/components/Login.js"));
+const Signup = lazy(() => import("../../src/components/Signup.js"));
 
 export default function Landing() {
     const [component, setComp] = useState("landing");
