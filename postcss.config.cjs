@@ -1,10 +1,10 @@
 const tailwindcss = require('tailwindcss');
-// const autoprefixer = require('autoprefixer');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
     plugins: [
         tailwindcss, 
         "postcss-preset-env",
-        // autoprefixer
+        autoprefixer
     ],
 };
