@@ -11,7 +11,7 @@ const CommentSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    // username
+    // username (User)
 });
 
 const Comment = model("Comment", CommentSchema);

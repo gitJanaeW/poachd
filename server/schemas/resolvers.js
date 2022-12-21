@@ -1,5 +1,5 @@
 const {AuthenticationError} = require('apollo-server-express');
-const {User, Recipe} = require('../models');
+const {User, Recipe, Comment} = require('../models');
 const {signToken} = require('../utils/auth');
 
 const resolvers = {
@@ -10,9 +10,13 @@ const resolvers = {
                 return user;
             }
         },
-        recipe: async (parent, args) => {
-            const recipe = await Recipe.findById(args._id);
-            return recipe;
+        recipes: async () => {
+            const recipes = await Recipe.find();
+            return recipes;
+        },
+        comments: async () => {
+            const comments = await Comment.find();
+            return comments;
         }
     },
     Mutation: {
@@ -21,9 +25,11 @@ const resolvers = {
             const token = signToken(user);
             return {token, user};
         },
-        addRecipe: async (parent, args) => {
-            const recipe = await Recipe.create(args);
-            return {recipe};
-        }
+        // addRecipe: async (parent, args) => {
+        //     const recipe = await Recipe.create(args);
+        //     return {recipe};
+        // }
     }
-}
+};
+
+module.exports = resolvers;
