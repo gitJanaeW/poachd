@@ -23,6 +23,7 @@ const userSchema = new Schema({
     },
     subscribed: {
         type: Boolean,
+        required: true,
         default: false
     },
     recipes: [Schema.Types.Recipe],
