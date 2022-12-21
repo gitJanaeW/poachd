@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
     await server.start();
+    mongoose.set('debug', true);
     server.applyMiddleware({ app });
         db.once('open', () => {
             app.listen(PORT, () => {

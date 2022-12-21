@@ -3,7 +3,7 @@ const {Schema} = mongoose;
 const Recipe = require("./Recipe");
 const bcrypt = require("bcrypt");
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -19,19 +19,27 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        minlength: 5
+        min: 5
     },
+    description: {
+        type: String,
+        max: 280
+    },
+    style: [{
+        type: String
+    }],
     subscribed: {
         type: Boolean,
         required: true,
         default: false
     },
-    recipes: [Schema.Types.Recipe],
-    collection: [Schema.Types.Recipe]
-    // id
+    // recipes: [Schema.Types.Recipe],
+    // collection: [Schema.Types.Recipe]
+    // followers:
+    // following:
 });
 
-userSchema.pre("save", async function(next) {
+UserSchema.pre("save", async function(next) {
     if (this.isNew || this.isModified('password')) {
         const saltsRound = 10;
         this.password = await bcrypt.hash(this.password, saltRounds);
@@ -39,10 +47,9 @@ userSchema.pre("save", async function(next) {
     next();
 });
 
-userSchema.methods.isCorrectPassword = async function(password) {
+UserSchema.methods.isCorrectPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
 }
 
-const User = mongoose.model("User", userSchema);
-
+const User = mongoose.model("User", UserSchema);
 module.exports = User;

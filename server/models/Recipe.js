@@ -1,13 +1,11 @@
-const mongoose = require("mongoose");
-const {Schema} = mongoose;
+const {Schema, model} = require("mongoose");
 
-const recipeSchema = new Schema({
+const RecipeSchema = new Schema({
     name: {
         type: String,
         require: true,
         trim: true
     },
-    // img
     likes: {
         type: Number,
         default: 0
@@ -32,19 +30,24 @@ const recipeSchema = new Schema({
         type: String,
         require: true
     }],
-    date: {
+    createdAt: {
         type: Date,
         min: 0,
         default: Date.now
     },
-    poaches: {
-        type: [this], // will refer to any child recipe listed
-        pinned: {
-            type: Boolean,
-            default: false
-        }
-    } 
+    poachd: {
+        type: Boolean,
+        default: false
+    }
+    // poaches causes the recipe object to break. Check syntax
+    // poaches: {
+    //     type: [this], // will refer to any child recipe listed
+    //     pinned: {
+    //         type: Boolean,
+    //         default: false
+    //     }
+    // } 
 });
 
-const Recipe = mongoose.model("Recipe", recipeSchema);
+const Recipe = model("Recipe", RecipeSchema);
 module.exports = Recipe;
