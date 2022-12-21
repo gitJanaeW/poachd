@@ -6,8 +6,10 @@
   "type": "module",
   "scripts": {
     "dev": "webpack serve --mode development --hot --history-api-fallback",
-    "start": "node src/index.js",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "start": "node server.js",
+    "watch": "nodemon",
+    "seed": "node config/seeds.js"
   },
   "repository": {
     "type": "git",
@@ -38,7 +40,10 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "concurrently": "^7.6.0",
     "html-webpack-plugin": "^5.5.0",
+    "jsonwebtoken": "^8.5.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
