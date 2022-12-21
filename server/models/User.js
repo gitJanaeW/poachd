@@ -1,16 +1,13 @@
 const mongoose = require("mongoose");
 const {Schema} = mongoose;
+const Recipe = require("./Recipe");
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
-    firstName: {
+    username: {
         type: String,
         required: true,
-        trim: true
-    },
-    lastName: {
-        type: String,
-        required: true,
+        unique: true,
         trim: true
     },
     email: {
@@ -23,7 +20,11 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: 5
-    }
+    },
+    recipes: [Schema.Types.Recipe] // doublecheck syntax
+    // id
+    // recipes
+    // collections
 });
 
 userSchema.pre("save", async function(next) {
