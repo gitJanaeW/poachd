@@ -1,3 +1,4 @@
+const GraphQLDate = require('graphql-date')
 const {Schema, model} = require("mongoose");
 
 const RecipeSchema = new Schema({
@@ -31,9 +32,7 @@ const RecipeSchema = new Schema({
         require: true
     }],
     createdAt: {
-        type: Date,
-        min: 0,
-        default: Date.now
+        type: GraphQLDate
     },
     poachd: {
         type: Boolean,
