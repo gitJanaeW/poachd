@@ -4,11 +4,15 @@ const {signToken} = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        user: async (parent, args, context) => {
-            if (context. user) {
-                const user = await User.findById(context.user._id);
-                return user;
-            }
+        // user: async (parent, args, context) => {
+        //     if (context. user) {
+        //         const user = await User.findById(context.user._id);
+        //         return user;
+        //     }
+        // },
+        users: async () => {
+            const users = await User.find();
+            return users;
         },
         recipes: async () => {
             const recipes = await Recipe.find();

@@ -7,6 +7,7 @@ const typeDefs = gql`
         email: String
         description: String
         style: [String]
+        subscribed: Boolean
     }
     type Recipe {
         _id: ID
@@ -30,7 +31,7 @@ const typeDefs = gql`
         user: User
     }
     type Query {
-        user: User
+        users: [User]
         recipes: [Recipe]
         comments: [Comment]
     }
