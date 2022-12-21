@@ -21,10 +21,13 @@ const userSchema = new Schema({
         required: true,
         minlength: 5
     },
-    recipes: [Schema.Types.Recipe] // doublecheck syntax
+    subscribed: {
+        type: Boolean,
+        default: false
+    },
+    recipes: [Schema.Types.Recipe],
+    collection: [Schema.Types.Recipe]
     // id
-    // recipes
-    // collections
 });
 
 userSchema.pre("save", async function(next) {
