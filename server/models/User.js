@@ -33,7 +33,10 @@ const UserSchema = new Schema({
         required: true,
         default: false
     },
-    // recipes: [Schema.Types.Recipe],
+    recipes: {
+        type: [Schema.Types.ObjectId],
+        ref: "Recipe"
+    },
     // collection: [Schema.Types.Recipe]
     // followers:
     // following:

@@ -34,15 +34,13 @@ db.once("open", async () => {
         
         const randomUserIndex = Math.floor(Math.random() * 25);
         const {username, _id: userId} = createdUsers.insertedIds[randomUserIndex].toString();
-        createdRecipe = await Recipe.create({
+        const createdRecipe = await Recipe.create({
             name, username, likes, tags, prepTime, servings, ingredients, directions
         });
-        // this would push the recipe into a list of user's recipe by the recipe's userId
-        // don't have that set up yet, so it's commented out
-        // const updatedRecipe = await User.updateOne(
-        //     {_id: userId},
-        //     {$push: {recipe: createdRecipe._id}}
-        // );
+        const updatedUser = await User.updateOne(
+            {_id: userId},
+            {$push: {recipes: createdRecipe._id}}
+        );
         createdRecipes.push(createdRecipe);
     }
 
