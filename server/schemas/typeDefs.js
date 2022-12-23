@@ -21,6 +21,7 @@ const typeDefs = gql`
         style: [String]
         subscribed: Boolean
         recipes: [Recipe]
+        collectionList: [Recipe]
     }
     type Comment {
         _id: ID

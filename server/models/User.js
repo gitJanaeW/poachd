@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-const {Schema} = mongoose;
-const Recipe = require("./Recipe");
+const {Schema, model} = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const UserSchema = new Schema({
@@ -33,13 +31,22 @@ const UserSchema = new Schema({
         required: true,
         default: false
     },
-    recipes: {
-        type: [Schema.Types.ObjectId],
+    recipes: [{
+        type: Schema.Types.ObjectId,
         ref: "Recipe"
-    },
-    // collection: [Schema.Types.Recipe]
-    // followers:
-    // following:
+    }],
+    collectionList: [{
+        type: Schema.Types.ObjectId,
+        ref: "Recipe"
+    }],
+    followers: [{
+        type: Schema.Types.ObjectId,
+        ref: this
+    }],
+    following: [{
+        type: Schema.Types.ObjectId,
+        ref: this
+    }]
 });
 
 UserSchema.pre("save", async function(next) {
@@ -54,5 +61,5 @@ UserSchema.methods.isCorrectPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
 }
 
-const User = mongoose.model("User", UserSchema);
+const User = model("User", UserSchema);
 module.exports = User;

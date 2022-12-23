@@ -1,5 +1,5 @@
-const GraphQLDate = require('graphql-date')
 const {Schema, model} = require("mongoose");
+const GraphQLDate = require('graphql-date');
 
 const RecipeSchema = new Schema({
     name: {
