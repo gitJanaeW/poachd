@@ -32,15 +32,13 @@ const resolvers = {
             if (!correctPw) {
                 throw new AuthenticationError('Incorrect credentials');
             }
-            // const token = signToken(user);
-            // return {token, user};
-            return user;
+            const token = signToken(user);
+            return {token, user};
         },
         addUser: async (parent, args) => {
             const user = await User.create(args);
-            return user;
-            // const token = signToken(user);
-            // return {token, user};
+            const token = signToken(user);
+            return {token, user};
         },
         // addRecipe: async (parent, args) => {
         //     const recipe = await Recipe.create(args);

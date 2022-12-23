@@ -31,7 +31,7 @@ const typeDefs = gql`
         createdAt: Int
     }
     type Auth {
-        token: ID
+        token: ID!
         user: User
     }
     type Query {
@@ -41,8 +41,8 @@ const typeDefs = gql`
         recipe(_id: ID!): Recipe
     }
     type Mutation {
-        login(email: String!, password: String!): User
-        addUser(username: String!, email: String!, password: String!): User
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
     }
 `
 
