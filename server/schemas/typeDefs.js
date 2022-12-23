@@ -22,8 +22,6 @@ const typeDefs = gql`
         subscribed: Boolean
         recipes: [Recipe]
         collectionList: [Recipe]
-        followers: [User]
-        following: [User]
     }
     type Comment {
         _id: ID
@@ -35,6 +33,7 @@ const typeDefs = gql`
         user: User
     }
     type Query {
+        me: User
         users: [User]
         user(username: String!): User
         recipes: [Recipe]

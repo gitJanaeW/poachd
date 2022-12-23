@@ -31,22 +31,10 @@ const UserSchema = new Schema({
         required: true,
         default: false
     },
-    recipes: [{
-        type: Schema.Types.ObjectId,
-        ref: "Recipe"
-    }],
-    collectionList: [{
-        type: Schema.Types.ObjectId,
-        ref: "Recipe"
-    }],
-    followers: [{
-        type: Schema.Types.ObjectId,
-        ref: this
-    }],
-    following: [{
-        type: Schema.Types.ObjectId,
-        ref: this
-    }]
+    recipes: [{type: Schema.Types.ObjectId, ref: "Recipe"}],
+    collectionList: [{type: Schema.Types.ObjectId, ref: "Recipe"}],
+    // followers: [{type: Schema.Types.ObjectId, ref: this}],
+    // following: [{type: Schema.Types.ObjectId, ref: this}]
 });
 
 UserSchema.pre("save", async function(next) {
