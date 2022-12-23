@@ -40,7 +40,6 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "concurrently": "^7.6.0",
     "html-webpack-plugin": "^5.5.0",
     "jsonwebtoken": "^8.5.1",
