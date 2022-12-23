@@ -52,12 +52,12 @@ const UserSchema = new Schema({
 UserSchema.pre("save", async function(next) {
     if (this.isNew || this.isModified('password')) {
         const saltsRound = 10;
-        this.password = await bcrypt.hash(this.password, saltRounds);
+        this.password = await bcrypt.hash(this.password, saltsRound);
     }
     next();
 });
 
-UserSchema.methods.isCorrectPassword = async function(password) {
+UserSchema.methods.isCorrectPassword = async function (password) {
     return await bcrypt.compare(password, this.password);
 }
 

@@ -22,6 +22,8 @@ const typeDefs = gql`
         subscribed: Boolean
         recipes: [Recipe]
         collectionList: [Recipe]
+        followers: [User]
+        following: [User]
     }
     type Comment {
         _id: ID
@@ -34,11 +36,13 @@ const typeDefs = gql`
     }
     type Query {
         users: [User]
+        user(username: String!): User
         recipes: [Recipe]
-        comments: [Comment]
+        recipe(_id: ID!): Recipe
     }
     type Mutation {
-        addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): User
+        addUser(username: String!, email: String!, password: String!): User
     }
 `
 
