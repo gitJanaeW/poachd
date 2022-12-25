@@ -4,7 +4,7 @@ import Auth from "../utils/auth.js";
 import {ADD_USER} from "../utils/mutations.js";
 
 export default function SignUp() {
-    const [form, setForm] = ({username: "", email: "", password: ""});
+    const [form, setForm] = useState({username: "", email: "", password: ""});
     const [addUser] = useMutation(ADD_USER);
     const submitForm = async (e) => {
         e.preventDefault();

@@ -40,7 +40,10 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.3",
+    "apollo-link-context": "^1.0.20",
     "concurrently": "^7.6.0",
+    "graphql": "^16.6.0",
     "html-webpack-plugin": "^5.5.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

@@ -1,4 +1,4 @@
-class AuthService {
+class Auth {
     getToken() {
         return localStorage.getItem('id_token');
     }
@@ -11,3 +11,5 @@ class AuthService {
         window.location.assign("/explore");
     }
 }
+
+export default new Auth();
