@@ -1,23 +1,42 @@
+import {useState} from "react";
+import { useMutation } from "@apollo/client";
+import Auth from "../utils/auth.js";
+import {ADD_USER} from "../utils/mutations.js";
+
 export default function SignUp() {
-    return(
+    const [form, setForm] = ({username: "", email: "", password: ""});
+    const [addUser] = useMutation(ADD_USER);
+    const submitForm = async (e) => {
+        e.preventDefault();
+        const newUserData = await addUser({username: form.username, email: form.email, password: form.password});
+        const token = newUserData.data.addUser.token;
+        Auth.login(token);
+    }
+    const formChange = (e) => {
+        const {name, value} = e.target;
+        setForm({...setForm, [name]: value});
+        console.log(form);
+    }
+
+    return (
         <section className="bg-amber-300">
             <div className="rounded-lg sm:max-w-md xl:p-0">
                 <div className="p-6 my-auto">
                     <h1 id="signup" className="text-xl font-bold md:text-2xl my-5">
                         Create an account
                     </h1>
-                    <form>
+                    <form onSubmit={submitForm}>
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm font-medium">Your email</label>
-                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required=""/>
+                            <input onChange={formChange} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required=""/>
                         </div>
                         <div>
                             <label htmlFor="username" className="block mb-2 text-sm font-medium ">Username</label>
-                            <input type="username" name="username" id="username" placeholder="Username" className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required=""/>
+                            <input onChange={formChange} type="username" name="username" id="username" placeholder="Username" className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required=""/>
                         </div>
                         <div>
                             <label htmlFor="password" className="block mb-2 text-sm font-medium ">Password</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required=""/>
+                            <input onChange={formChange} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required=""/>
                         </div>
                         <button type="submit" className="bg-amber-100 font-medium duration-500 px-6 py-2 mr-3 mt-2 hover:bg-amber-400 rounded-full hover:shadow-md shadow">
                             Sign Up
