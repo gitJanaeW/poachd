@@ -1,6 +1,5 @@
 import favicon from "../../public/favicon.png";
 import profileImg from "../../public/images/profile-photo.jpg";
-
 export default function Nav() {
     const toggleDropdown = () => {
         const dropDown = document.getElementById("dropdown");
@@ -10,6 +9,16 @@ export default function Nav() {
             dropDown.classList.add("hidden");
         }
     };
+    const loggedIn = () => {
+        const loggedIn = localStorage.getItem("id_token");
+        if (loggedIn === null) {
+            console.log("null");
+            return false;
+        }
+        console.log("not null");
+        return true;
+    };
+
     return (
         <>
             <nav className="px-1 py-2 md:px-5 md:py-3 bg-white shadow flex justify-between items-center sticky top-0 max-h-16">
@@ -22,25 +31,25 @@ export default function Nav() {
                 <form className="md:my-0 w-2/5">
                     <input className='py-1 px-2 text-sm md:text-l w-full border-2 border-slate-300 rounded' type="text" id="search" placeholder='Search'></input>
                 </form>
-                {/* z-[-1] */}
-                <div onClick={toggleDropdown} className="md:flex justify-end items-center md:z-auto md:w-auto">
-                    <img className='inline-block md:ml-4 rounded-full w-8 md:w-10' src={profileImg} alt="profile icon"/>
-                    <p className="inline-block text-lg">▾</p>
-                </div> 
+                {loggedIn() && (
+                    <div onClick={toggleDropdown} className="md:flex justify-end items-center md:z-auto md:w-auto">
+                        <img className='inline-block md:ml-4 rounded-full w-8 md:w-10' src={profileImg} alt="profile icon"/>
+                        <p className="inline-block text-lg">▾</p>
+                    </div> 
+                )}
             </nav>
-            <div onClick={toggleDropdown} id="dropdown" className="sticky top-12 md:top-16">
-                <div className="bg-white absolute top-0 right-0 rounded-b shadow mr-3">
-                    <ul className="sticky top-0 p-2 w-26 md:w-36 text-right">
-                        <li><button className="bg-amber-300 text-white text-xs md:text-sm mr-2 rounded hover:bg-amber-400 py-1 px-2">New Recipe</button></li>
-                        <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">My Profile</li>
-                        <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Collections</li>
-                        <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Settings</li>
-                        <hr className="my-1"></hr>
-                        <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Log Out</li>
-                    </ul>
+                <div onClick={toggleDropdown} id="dropdown" className="sticky top-12 md:top-16 hidden">
+                    <div className="bg-white absolute top-0 right-0 rounded-b shadow mr-3">
+                        <ul className="sticky top-0 p-2 w-26 md:w-36 text-right">
+                            <li><button className="bg-amber-300 text-white text-xs md:text-sm mr-2 rounded hover:bg-amber-400 py-1 px-2">New Recipe</button></li>
+                            <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">My Profile</li>
+                            <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Collections</li>
+                            <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Settings</li>
+                            <hr className="my-1"></hr>
+                            <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Log Out</li>
+                        </ul>
+                    </div>
                 </div>
-                
-            </div>
         </>
     );
 }
