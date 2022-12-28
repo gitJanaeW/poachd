@@ -8,14 +8,24 @@ export default function SignUp() {
     const [addUser] = useMutation(ADD_USER);
     const submitForm = async (e) => {
         e.preventDefault();
-        const newUserData = await addUser({username: form.username, email: form.email, password: form.password});
+        let test = {username: form.username, email: form.email, password: form.password}
+        console.log("username:", form.username);
+        console.log("email:", form.email);
+        console.log("password:", form.password);
+        const newUserData = await addUser({
+            variables: {
+                username: form.username,
+                email: form.email,
+                password: form.password
+            }
+        });
         const token = newUserData.data.addUser.token;
         Auth.login(token);
     }
     const formChange = (e) => {
         const {name, value} = e.target;
-        setForm({...setForm, [name]: value});
-        console.log(form);
+        setForm({...form, [name]: value});
+        console.log("form", form);
     }
 
     return (
