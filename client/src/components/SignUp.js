@@ -1,18 +1,14 @@
 import {useState} from "react";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth.js";
-import {ADD_USER} from "../utils/mutations.js";
+import {SIGN_UP} from "../utils/mutations.js";
 
 export default function SignUp() {
     const [form, setForm] = useState({username: "", email: "", password: ""});
-    const [addUser] = useMutation(ADD_USER);
+    const [signUp] = useMutation(SIGN_UP);
     const submitForm = async (e) => {
         e.preventDefault();
-        let test = {username: form.username, email: form.email, password: form.password}
-        console.log("username:", form.username);
-        console.log("email:", form.email);
-        console.log("password:", form.password);
-        const newUserData = await addUser({
+        const newUserData = await signUp({
             variables: {
                 username: form.username,
                 email: form.email,
@@ -25,7 +21,6 @@ export default function SignUp() {
     const formChange = (e) => {
         const {name, value} = e.target;
         setForm({...form, [name]: value});
-        console.log("form", form);
     }
 
     return (
