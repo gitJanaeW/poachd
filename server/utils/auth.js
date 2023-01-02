@@ -27,4 +27,13 @@ module.exports = {
     const payload = {username, email, _id};
     return jwt.sign({data: payload }, secret, { expiresIn: expiration});
   },
+  // signOut: function () {
+  //   const storedToken = localStorage.getItem('id_token');
+  //   const expTime =  (expiration * 1000) - 60000;
+  //   // if there's a token in localStorage and the token is expired
+  //   if (storedToken && Date.now() >= expTime) {
+  //     localStorage.removeItem("id_token");
+  //     window.location.assign("/explore");
+  //   }
+  // }
 };

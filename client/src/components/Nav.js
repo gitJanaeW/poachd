@@ -1,5 +1,7 @@
 import favicon from "../../public/favicon.png";
 import profileImg from "../../public/images/profile-photo.jpg";
+// const {signOut} = require("../../../server/utils/auth");
+
 export default function Nav() {
     const toggleDropdown = () => {
         const dropDown = document.getElementById("dropdown");
@@ -12,10 +14,8 @@ export default function Nav() {
     const loggedIn = () => {
         const loggedIn = localStorage.getItem("id_token");
         if (loggedIn === null) {
-            console.log("null");
             return false;
         }
-        console.log("not null");
         return true;
     };
 

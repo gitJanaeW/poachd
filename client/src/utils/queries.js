@@ -2,12 +2,20 @@ import {gql} from "@apollo/client";
 
 // SHOULD WORK WITH HEADER AUTH
 export const QUERY_ME = gql`
-    query getLoggedUser {
+    query queryMe {
         me {
             _id
             username
             email
-        }
+            description
+            style
+            subscribed
+            recipes {
+              name
+              likes
+              tags
+            }
+          }
     }
 `;
 
@@ -31,16 +39,16 @@ export const QUERY_USER = gql`
 `;
 
 // SHOULD WORK
-export const GET_RECIPES = gql`
-    recipes {
-        _id
-        name
-        likes
-        tags
-        prepTime
-        servings
-        ingredients
-        directions
-        poachd
-    }
-`;
+// export const GET_RECIPES = gql`
+//     recipes {
+//         _id
+//         name
+//         likes
+//         tags
+//         prepTime
+//         servings
+//         ingredients
+//         directions
+//         poachd
+//     }
+// `;
