@@ -30,6 +30,7 @@ const client = new ApolloClient({
 
 const Landing = lazy(() => import("./pages/Landing.js"));
 const Profile = lazy(() => import("./pages/Profile.js"));
+const EditProfile = lazy(() => import("./pages/EditProfile.js"));
 const Recipe = lazy(() => import("./pages/Recipe.js"));
 const Explore = lazy(() => import("./pages/Explore.js"));
 const Footer = lazy(() => import("./components/Footer.js"));
@@ -45,6 +46,7 @@ const App = () => {
                             <Route path="/login" element={<Landing/>}/>
                             <Route path="/signup" element={<Landing/>}/>
                             <Route path="/profile" element={<Profile/>}/>
+                            <Route path="/profile/edit" element={<EditProfile/>}/>
                             <Route path="/recipe" element={<Recipe/>}/>
                             <Route path="/explore" element={<Explore/>}/>
                         </Routes>

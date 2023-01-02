@@ -15,6 +15,7 @@ export default function SignUp() {
                 password: form.password
             }
         });
+        console.log(newUserData);
         const token = newUserData.data.addUser.token;
         Auth.login(token);
     }
