@@ -2,14 +2,15 @@ import profileImg from "../../public/images/profile-photo.jpg";
 import recipeImg from "../../public/images/frontendtest/chili.jpg";
 import {useQuery} from "@apollo/client";
 import {QUERY_ME} from "../utils/queries.js";
+import {Link} from "react-router-dom";
 
 export default function Profile() {
     const token = localStorage.getItem("id_token");
     const {error, data} = useQuery(QUERY_ME, {
         headers: {Authorization: `Bearer ${token}`}
     });
-    if (error) console.log(`Error: ${error.message}`);
     if (data) console.log(data);
+    if (error) console.log(`Error: ${error.message}`);
     if (data) {
         return(
             <div>
@@ -20,17 +21,17 @@ export default function Profile() {
                             <h3 className="text-4xl font-semibold leading-normal mb-2 max-md:text-center">
                                 {data.me.username}
                             </h3>
-                            {!data.me.style ? (
-                                    <div className="text-sm mt-0 mb-2 font-bold max-md:text-center">
-                                        LIFESTYLE: VEGAN, SPICY, FLAVORFUL
+                            {data.me.style ? (
+                                    <div className="text-sm mt-0 mb-2 font-bold max-md:text-center uppercase">
+                                        {data.me.style[0]}, {data.me.style[1]}, {data.me.style[2]}
                                     </div>
                                 ) : null
                             }
-                            <p className="max-md:text-center">
-                                <button className="bg-amber-300 text-white font-medium duration-500 px-6 py-2 hover:bg-amber-400 rounded hover:shadow-md shadow" type="button">
+                            <Link to="/profile/edit">
+                                <button className="bg-amber-300 text-white font-medium mx-auto px-6 py-2 hover:bg-amber-400 rounded hover:shadow-md shadow">
                                     EDIT
                                 </button>
-                            </p>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex justify-around pt-6">
@@ -53,7 +54,7 @@ export default function Profile() {
                 ) : null}
                 <hr className="m-16"></hr>
                     <div className="ml-4">
-                        <button className="bg-amber-300 text-white font-medium duration-500 px-6 py-2 mr-3 mt-2 hover:bg-amber-400 rounded-full hover:shadow-md shadow" type="button">
+                        <button id="collections" className="bg-amber-300 text-white font-medium duration-500 px-6 py-2 mr-3 mt-2 hover:bg-amber-400 rounded-full hover:shadow-md shadow" type="button">
                             COLLECTIONS
                         </button>
                         <button className="bg-amber-300 text-white font-medium duration-500 px-6 py-2 mr-3 mt-2 hover:bg-amber-400 rounded-full hover:shadow-md shadow" type="button">

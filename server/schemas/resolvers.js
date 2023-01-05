@@ -49,6 +49,14 @@ const resolvers = {
             const token = signToken(user);
             return {token, user};
         },
+        updateUser: async (parent, args) => {
+            const user = await User.findByIdAndUpdate(
+                args._id,
+                {$set: {style: args.style, description: args.description}},
+                {new: true}
+            );
+            
+        }
         // addRecipe: async (parent, args) => {
         //     const recipe = await Recipe.create(args);
         //     return {recipe};
