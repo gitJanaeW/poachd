@@ -1,27 +1,39 @@
 import profileImg from "../../public/images/profile-photo.jpg";
-import {useQuery} from "@apollo/client";
+import {useQuery, useMutation} from "@apollo/client";
 import {QUERY_ME} from "../utils/queries.js";
-import { useState } from "react";
+import {useState} from "react";
+import {UPDATE_USER} from "../utils/mutations.js";
 
 export default function EditProfile () {
     const token = localStorage.getItem("id_token");
     const [form, setForm] = useState({style: "", description: ""});
-    const {error, data} = useQuery(QUERY_ME, {
+    const {data} = useQuery(QUERY_ME, {
         headers: {Authorizaton: `Bearer ${token}`}
     });
+    const [updateUser, {errorMut, loadingMut, dataMut}] = useMutation(UPDATE_USER);
     const formChange = (e) => {
         const {name, value} = e.target;
         setForm({...form, [name]: value});
         console.log(form);
     };
-    const submitForm = () => {
+    const submitForm = async (e) => {
+        e.preventDefault();
         const userId = data.me._id;
-        const styleValue = form.style.split(" ");        
-        return {_id: userId, style: styleValue, description: form.description}
+        const styleValue = form.style.split(" ");
+        const userDescription = form.description;
+        console.log(userId)
+        console.log(styleValue)
+        console.log(userDescription)
+        const updateUserData = await updateUser({
+            variables: {
+                _id: userId, description: userDescription, style: styleValue
+            }
+        });
+        if(error) console.log("ERROR: ", error);
     };
     if (data) {
         return(
-            <form className="w-full max-w-lg my-6 md:mx-8">
+            <form onSubmit={submitForm} className="w-full max-w-lg my-6 md:mx-8">
                 <img className="rounded-full w-40" src={profileImg} alt='Poachd logo, which is an anstract sunny side up egg'/>
                 <div className="bg-gray-400 text-white w-7 rounded text-center text-lg relative left-32 bottom-10 z-0">✎</div>
                 <div className="flex flex-wrap my-6">

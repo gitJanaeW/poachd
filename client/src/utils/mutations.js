@@ -22,3 +22,12 @@ export const SIGN_UP = gql`
     }
 `;
 
+export const UPDATE_USER = gql`
+    mutation updateUser($_id: ID!, $description: String, $style: [String]) {
+        updateUser(_id: $_id, description: $description, style: $style) {
+            username
+            description
+            style
+        }
+    }
+`;

@@ -9,6 +9,7 @@ export default function Profile() {
     const {error, data} = useQuery(QUERY_ME, {
         headers: {Authorization: `Bearer ${token}`}
     });
+    // Another approach: take the "me" query user._id and use it to queryUser to get the info for this page?
     if (data) console.log(data);
     if (error) console.log(`Error: ${error.message}`);
     if (data) {
@@ -21,14 +22,14 @@ export default function Profile() {
                             <h3 className="text-4xl font-semibold leading-normal mb-2 max-md:text-center">
                                 {data.me.username}
                             </h3>
-                            {data.me.style ? (
+                            {data.me.style.length ? (
                                     <div className="text-sm mt-0 mb-2 font-bold max-md:text-center uppercase">
                                         {data.me.style[0]}, {data.me.style[1]}, {data.me.style[2]}
                                     </div>
                                 ) : null
                             }
                             <Link to="/profile/edit">
-                                <button className="bg-amber-300 text-white font-medium mx-auto px-6 py-2 hover:bg-amber-400 rounded hover:shadow-md shadow">
+                                <button className="max-sm:flex bg-amber-300 text-white font-medium mx-auto px-6 py-2 hover:bg-amber-400 rounded hover:shadow-md shadow">
                                     EDIT
                                 </button>
                             </Link>

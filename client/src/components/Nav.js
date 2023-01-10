@@ -1,7 +1,7 @@
 import favicon from "../../public/favicon.png";
 import profileImg from "../../public/images/profile-photo.jpg";
 import {Link} from "react-router-dom";
-// import {signOut} = from "../../../server/utils/auth";
+import Auth from "../utils/auth.js"
 
 export default function Nav() {
     const toggleDropdown = () => {
@@ -18,6 +18,9 @@ export default function Nav() {
             return false;
         }
         return true;
+    };
+    const logUserOut = () => {
+        Auth.logout();
     };
 
     return (
@@ -47,7 +50,7 @@ export default function Nav() {
                         <Link to="/profile#collections"><li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Collections</li></Link>
                         <Link to="/profile/edit"><li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Settings</li></Link>
                         <hr className="my-1"></hr>
-                        <li className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Log Out</li>
+                        <li onClick={logUserOut} className="text-xs md:text-sm pl-12 pr-3 py-1 hover:bg-slate-50">Log Out</li>
                     </ul>
                 </div>
             </div>
