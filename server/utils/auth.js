@@ -27,6 +27,7 @@ module.exports = {
     const payload = {username, email, _id};
     return jwt.sign({data: payload }, secret, { expiresIn: expiration});
   },
+  // used: https://stackoverflow.com/questions/51292406/check-if-token-expired-using-this-jwt-library
   // signOut: function () {
   //   const storedToken = localStorage.getItem('id_token');
   //   // const expTime =  (expiration * 1000) - 60000;

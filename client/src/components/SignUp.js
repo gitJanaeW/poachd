@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth.js";
 import {SIGN_UP} from "../utils/mutations.js";
@@ -48,7 +49,7 @@ export default function SignUp() {
                             Sign Up
                         </button>
                         <p className="text-sm font-light text-gray-500">
-                            Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline ">Login here</a>
+                            Already have an account? <Link to="/login" className="font-medium text-primary-600 hover:underline">Login here</Link>
                         </p>
                     </form>
                 </div>
