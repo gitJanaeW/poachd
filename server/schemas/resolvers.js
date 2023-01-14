@@ -1,5 +1,6 @@
 const {AuthenticationError} = require('apollo-server-express');
-const {User, Recipe, Comment} = require('../models');
+const {readFile} = require('fs');
+const {User, Recipe, Comment, Image} = require('../models');
 const {signToken} = require('../utils/auth');
 
 const resolvers = {
@@ -48,6 +49,21 @@ const resolvers = {
         addUser: async (parent, args) => {
             const user = await User.create(args);
             const token = signToken(user);
+            let defaultPic;
+            readFile("../../client/public/images/profile-photo.jpg", (err, data) => {
+                if (err) throw err;
+                defaultPic = new Image({
+                    alt: "a cartoon, sunny-side egg on yellow background",
+                    image: data
+                });
+                console.log("IMAGE RETURNED: ", data);
+                defaultPic.save((err, image) => {
+                    if (err) throw err;
+                    console.log("Image saved successfully");
+                })
+            });
+            // import profilePic as binary String for storage
+            user.profilePic = defaultPic;
             return {token, user};
         },
         updateUser: async (parent, args) => {

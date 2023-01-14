@@ -1,5 +1,9 @@
 const {Schema, model} = require("mongoose");
 const bcrypt = require("bcrypt");
+const {readFile} = require("fs");
+
+// use fs to get binary version of default profile picture 
+
 
 const UserSchema = new Schema({
     username: {
@@ -34,7 +38,11 @@ const UserSchema = new Schema({
     },
     recipes: [{type: Schema.Types.ObjectId, ref: "Recipe"}],
     collectionList: [{type: Schema.Types.ObjectId, ref: "Recipe"}],
-    profilePic: {type: Schema.Types.ObjectId, ref: "Image"}
+    profilePic: {
+        type: Schema.Types.ObjectId, 
+        ref: "Image",
+        // default:
+    }
     // followers: [{type: Schema.Types.ObjectId, ref: this}],
     // following: [{type: Schema.Types.ObjectId, ref: this}]
 });
