@@ -17,7 +17,6 @@ export default function Login() {
         });
         const token = loggedInUser.data.login.token;
         Auth.login(token);
-        console.log(loggedInUser.data);
     }
     const formChange = (e) => {
         const {name, value} = e.target;

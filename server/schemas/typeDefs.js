@@ -1,6 +1,11 @@
 const {gql} = require('apollo-server-express');
 
 const typeDefs = gql`
+    type Image {
+        _id: ID!
+        alt: String!
+        image: String!
+    }
     type Recipe {
         _id: ID
         name: String
@@ -19,6 +24,7 @@ const typeDefs = gql`
         email: String
         description: String
         style: [String]
+        profilePic: Image
         subscribed: Boolean
         recipes: [Recipe]
         collectionList: [Recipe]
